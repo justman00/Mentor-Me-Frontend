@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { BtnPrimary } from "../main/Search";
 import { Link } from "react-router-dom";
-import { fetchQuestion } from "../../actions";
+import { fetchQuestion, unmountAction } from "../../actions";
 import { device } from "../main/device";
 import Answers from "../answer/Answers";
 import Loader from "react-loader-spinner";
+import { UNMOUNT_QUESTION } from "../../actions/types";
 
 //loader style
 const Load = styled.div`
@@ -114,9 +115,19 @@ const RenderStyled = styled.div`
   }
 `;
 
-function SingleQuestion({ question, currentUser, fetchQuestion, match }) {
+function SingleQuestion({
+  question,
+  currentUser,
+  fetchQuestion,
+  match,
+  unmountAction
+}) {
   useEffect(() => {
     fetchQuestion(match.params.id);
+
+    return () => {
+      unmountAction(UNMOUNT_QUESTION);
+    };
   }, []);
 
   if (!question) {
@@ -202,5 +213,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchQuestion }
+  { fetchQuestion, unmountAction }
 )(SingleQuestion);

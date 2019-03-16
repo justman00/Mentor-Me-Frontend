@@ -143,6 +143,8 @@ export const fetchConversationHelper = async id => {
   return res.data;
 };
 
+export const unmountAction = type => ({ type });
+
 // {
 //   ...currentUser,
 //   id: '9',
