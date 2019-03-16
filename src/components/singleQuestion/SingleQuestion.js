@@ -3,14 +3,16 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { BtnPrimary } from "../main/Search";
 import { Link } from "react-router-dom";
-import {fetchQuestion, fetchProfile} from '../../actions';
-import {device} from '../main/device';
-
-import Loader from 'react-loader-spinner';
+import { fetchQuestion } from "../../actions";
+import { device } from "../main/device";
+import Answers from "../answer/Answers";
+import Loader from "react-loader-spinner";
 
 //loader style
-const Load = styled.div` text-align:center; margin-top: 50%;`
-
+const Load = styled.div`
+  text-align: center;
+  margin-top: 50%;
+`;
 
 const UserDetails = styled.div`
   position: relative;
@@ -32,7 +34,7 @@ const Img = styled.img`
   left: 35%;
   border: solid white 7px;
   border-radius: 40px;
-  @media ${device.desktop}{
+  @media ${device.desktop} {
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -63,7 +65,7 @@ const QuestionDiv = styled.div`
   flex-direction: column;
   overflow: hidden;
   justify-content: space-between;
-  @media ${device.desktop}{
+  @media ${device.desktop} {
     margin-top: 2%;
     width: 50%;
     margin: auto;
@@ -118,12 +120,11 @@ function SingleQuestion({ question, currentUser, fetchQuestion, match }) {
   }, []);
 
   if (!question) {
-    return <Load><Loader 
-    type="TailSpin"
-    color="#5887F9"
-    height="100"	
-    width="100"
-    /></Load>;
+    return (
+      <Load>
+        <Loader type="TailSpin" color="#5887F9" height="100" width="100" />
+      </Load>
+    );
   }
 
   console.log(question);
@@ -132,7 +133,7 @@ function SingleQuestion({ question, currentUser, fetchQuestion, match }) {
     console.log("hihi");
     if (currentUser.id + "" === question.user_id + "") {
       console.log("hi");
-      console.log(question)
+      console.log(question);
       return (
         <>
           <Edit>
@@ -169,22 +170,23 @@ function SingleQuestion({ question, currentUser, fetchQuestion, match }) {
       </Link>
       <div>
         <QuestionDiv>
-
           <div>
             <RenderStyled>
               <h3>{question.post}</h3>
-             
             </RenderStyled>
             {displayButtons()}
             <p>{question.description}</p>
-         
           </div>
 
-          <Link style={{ textDecoration: "none" }} to={`/conversation/conversation_id`}>
+          <Link
+            style={{ textDecoration: "none" }}
+            to={`/conversation/conversation_id`}
+          >
             <BtnPrimary width="87%">
               <i className="fas fa-user-plus" /> Respond
             </BtnPrimary>
           </Link>
+          <Answers />
         </QuestionDiv>
       </div>
     </div>
@@ -200,5 +202,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {fetchQuestion}
+  { fetchQuestion }
 )(SingleQuestion);
