@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const AnswerStyled = styled.div`
   width: 95%;
@@ -20,31 +21,37 @@ const AnswerStyled = styled.div`
 `;
 
 const UserStyled = styled.div`
-  display: flex;
   width: 40%;
-  flex-direction: column;
+  a {
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
 
-  h4 {
-    font-size: 1.8rem;
-    width: 50%;
-    color: #5574f7;
-    margin-bottom: 4%;
-    text-align: center;
-    /* width: 100%; */
-  }
+    h4 {
+      font-size: 1.8rem;
+      width: 50%;
+      color: #5574f7;
+      margin-bottom: 4%;
+      text-align: center;
+      /* width: 100%; */
+    }
 
-  img {
-    width: 50%;
-    border-radius: 25%;
+    img {
+      width: 50%;
+      border-radius: 25%;
+    }
   }
 `;
 
 function AnswerItem(props) {
+  console.log(props.answer);
   return (
     <AnswerStyled>
       <UserStyled>
-        <h4>{props.answer.name}</h4>
-        <img src={props.answer.photo} alt="user" />
+        <Link to={`/profile/${props.answer.user_id}`}>
+          <h4>{props.answer.name}</h4>
+          <img src={props.answer.photo} alt="user" />
+        </Link>
       </UserStyled>
       <div>
         <p>{props.answer.post}</p>

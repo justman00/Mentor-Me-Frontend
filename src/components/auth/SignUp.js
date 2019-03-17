@@ -5,17 +5,8 @@ import { signup } from "../../actions";
 import { Redirect } from "react-router-dom";
 import { LoginStyled } from "./Login";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
 import { connect } from "react-redux";
-import {device} from '../main/device';
-const H1 = styled.h1`
-  margin-top:-25%;`;
-const Log = styled.div`
-margin-bottom: 500px;
-@media ${device.desktop}{
-  margin-top: -14%;
-}
-`;
+
 const SignUp = ({ errors, touched, isLoggedIn }) => {
   console.log("mounted");
   if (isLoggedIn) {
@@ -26,7 +17,7 @@ const SignUp = ({ errors, touched, isLoggedIn }) => {
 
   return (
     <LoginStyled register>
-      <H1>Register</H1>
+      <h1>Register</h1>
       <Form>
         {touched.username && errors.username && <p>{errors.username}</p>}
         <Field name="username" type="text" placeholder="Username" />
@@ -41,9 +32,7 @@ const SignUp = ({ errors, touched, isLoggedIn }) => {
           <i className="far fa-edit" /> Register
         </button>
       </Form>
-      <Log>
       <Link to="/login">Login</Link>
-      </Log>
     </LoginStyled>
   );
 };

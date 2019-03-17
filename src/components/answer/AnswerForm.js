@@ -12,6 +12,7 @@ const FormStyled = styled.form`
 
   input {
     padding: 10px;
+    background: #fafafa;
     font-size: 1.6rem;
     width: 70%;
     border: 2px solid #5574f7;

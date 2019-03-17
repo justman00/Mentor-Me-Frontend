@@ -1,21 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-
-const Input = styled.input`
-  display: flex;
-  flex-direction: column;
-  margin: 5% auto;
-`;
-const Area = styled.textarea`
-  display: flex;
-  flex-direction: column;
-  margin: 5% auto;
-`;
-const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  margin: 5% auto;
-`;
+import { MainContent } from "../ask/Ask";
+import { BtnPrimary } from "../main/Search";
 
 function ProfileEditForm(props) {
   console.log(props);
@@ -31,34 +16,43 @@ function ProfileEditForm(props) {
   }
 
   return (
-    <form onSubmit={e => props.handleSubmit(e, values)}>
-      <Input
-        onChange={handleChange}
-        value={values.name}
-        name="name"
-        type="text"
-      />
-      <Input
-        onChange={handleChange}
-        value={values.role}
-        name="role"
-        type="text"
-      />
-      <Input
-        onChange={handleChange}
-        value={values.photo}
-        name="photo"
-        type="text"
-      />
-      <Area
-        onChange={handleChange}
-        value={values.about}
-        name="about"
-        cols="30"
-        rows="10"
-      />
-      <Button type="submit">Submit</Button>
-    </form>
+    <MainContent>
+      <form onSubmit={e => props.handleSubmit(e, values)}>
+        <label>Full Name</label>
+        <input
+          onChange={handleChange}
+          value={values.name}
+          name="name"
+          type="text"
+        />
+        <label>Role</label>
+        <input
+          onChange={handleChange}
+          value={values.role}
+          name="role"
+          type="text"
+        />
+        <label>Photo</label>
+        <input
+          onChange={handleChange}
+          value={values.photo}
+          name="photo"
+          type="text"
+        />
+        <label>About</label>
+        <textarea
+          onChange={handleChange}
+          value={values.about}
+          name="about"
+          cols="30"
+          rows="10"
+          placeholder="Let the others know more about you"
+        />
+        <BtnPrimary width="100%" type="submit">
+          Submit
+        </BtnPrimary>
+      </form>
+    </MainContent>
   );
 }
 

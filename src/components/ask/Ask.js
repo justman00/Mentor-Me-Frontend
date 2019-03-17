@@ -18,7 +18,7 @@ export const Intro = styled.h1`
   border-bottom-right-radius: 10px;
 `;
 
-const MainContent = styled.div`
+export const MainContent = styled.div`
   margin: 0 auto;
   width: 80%;
   color: #4c5264;

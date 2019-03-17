@@ -4,18 +4,14 @@ import * as yup from "yup";
 import { login } from "../../actions";
 import { Redirect, Link } from "react-router-dom";
 import styled from "styled-components";
-import {device} from '../main/device';
+import { device } from "../main/device";
 
 import { connect } from "react-redux";
 
 export const LoginStyled = styled.div`
-  height: auto;
+  height: 100vh;
   width: 100vw;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 96, 195, 1) 0%,
-    rgba(85, 116, 247, 1) 100%
-  );
+  background: linear-gradient(to bottom, #60c3ff, #5574f7);
   font-family: canada-type-gibson, sans-serif;
   position: fixed;
   display: flex;
@@ -24,23 +20,23 @@ export const LoginStyled = styled.div`
   justify-content: space-between;
   overflow: hidden;
   h1 {
-    margin-top: 24%;
+    margin-top: 30%;
     margin-bottom: 18%;
     font-size: 4rem;
     font-weight: 550;
     color: #fff;
-    @media ${device.desktop}{
-    margin-top:5%;
+    @media ${device.desktop} {
+      margin-top: 5%;
     }
   }
 
   form {
     width: 90%;
     margin: 0 auto;
-    margin-bottom: 20%;
-    @media ${device.desktop}{
-    max-width:900px;
-    margin-top: -6%;
+    margin-bottom: 30%;
+    @media ${device.desktop} {
+      max-width: 900px;
+      margin-top: -6%;
     }
 
     input {
@@ -79,7 +75,7 @@ export const LoginStyled = styled.div`
   }
 
   a {
-    margin-bottom: 20%;
+    margin-bottom: 15%;
     font-size: 1.8rem;
     font-weight: 500;
     color: #fff;
@@ -92,13 +88,6 @@ export const LoginStyled = styled.div`
     text-align: center;
   }
 `;
-const Reg = styled.div`
-margin-bottom: 500px;
-@media ${device.desktop}{
-  margin-top: -14%;
-  margin-bottom: 500px;
-}`;
-
 
 const Login = ({ errors, touched, isLoggedIn }) => {
   if (isLoggedIn) {
@@ -115,7 +104,8 @@ const Login = ({ errors, touched, isLoggedIn }) => {
         <Field name="password" type="password" placeholder="password" />
         <button>Sign In</button>
       </Form>
-      <Reg><Link to="/signup">Register</Link></Reg>   
+
+      <Link to="/signup">Register</Link>
     </LoginStyled>
   );
 };

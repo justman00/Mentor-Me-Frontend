@@ -11,12 +11,13 @@ const Load = styled.div`
   margin-top: 50%;
 `;
 const H1 = styled.h1`
-font-size: 2.2rem;
-    font-family: "Gibson", sans-serif;
-    color: #5887f9;
-    font-weight: 550;
-    text-align:center;
-    margin-top:15%;`;
+  font-size: 2.2rem;
+  font-family: "Gibson", sans-serif;
+  color: #5887f9;
+  font-weight: 550;
+  text-align: center;
+  margin-top: 10%;
+`;
 
 function ProfileEdit(props) {
   if (!props.currentUser) {
