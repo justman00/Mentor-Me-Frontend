@@ -48,7 +48,7 @@ function AnswerForm(props) {
     const formVals = {
       post: val,
       category: props.category,
-      user_fk: 1,
+      user_fk: props.userId,
       post_fk: props.questionId
     };
     props.addAnswer(formVals).then(() => setVal(""));

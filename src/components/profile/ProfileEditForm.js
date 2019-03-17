@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Input = styled.input`
-display:flex;
-flex-direction: column;
-margin: 5% auto;`;
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+`;
 const Area = styled.textarea`
-display:flex;
-flex-direction: column;
-margin: 5% auto;`;
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+`;
 const Button = styled.button`
-display:flex;
-flex-direction: column;
-margin: 5% auto;`;
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+`;
 
 function ProfileEditForm(props) {
   console.log(props);
@@ -20,7 +23,7 @@ function ProfileEditForm(props) {
     name: props.user.fullName,
     role: props.user.role,
     photo: props.user.photoUrl,
-    about: props.user.about
+    about: props.user.about || ""
   });
 
   function handleChange(e) {
