@@ -8,7 +8,9 @@ import {
   FETCH_QUESTION_SUCCESS,
   UNMOUNT_QUESTION,
   FETCH_ANSWERS_SUCCESS,
-  FETCH_ANSWERS_ATTEMPT
+  FETCH_ANSWERS_ATTEMPT,
+  ADD_ANSWER_ATTEMPT,
+  ADD_ANSWER_SUCCESS
 } from "../actions/types";
 
 const initialStore = {
@@ -41,6 +43,8 @@ export default (state = initialStore, action) => {
       return { ...state, answers: [] };
     case FETCH_ANSWERS_SUCCESS:
       return { ...state, answers: action.payload };
+    case ADD_ANSWER_SUCCESS:
+      return { ...state, answers: [...state.answers, action.payload] };
     default:
       return state;
   }

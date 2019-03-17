@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import AnswerList from "./AnswerList";
 import AnswerForm from "./AnswerForm";
 import { connect } from "react-redux";
-import { fetchAnswers } from "../../actions";
+import { fetchAnswers, addAnswer } from "../../actions";
 
 function Answers(props) {
   useEffect(() => {
@@ -13,7 +13,7 @@ function Answers(props) {
   return (
     <div>
       <AnswerList answers={props.answers} />
-      <AnswerForm />
+      <AnswerForm {...props} />
     </div>
   );
 }
@@ -24,5 +24,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchAnswers }
+  { fetchAnswers, addAnswer }
 )(Answers);

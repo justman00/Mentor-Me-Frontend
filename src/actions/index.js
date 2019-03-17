@@ -16,7 +16,9 @@ import {
   FETCH_CONVERSATION_ATTEMPT,
   FETCH_CONVERSATION_SUCCESS,
   FETCH_ANSWERS_ATTEMPT,
-  FETCH_ANSWERS_SUCCESS
+  FETCH_ANSWERS_SUCCESS,
+  ADD_ANSWER_SUCCESS,
+  ADD_ANSWER_ATTEMPT
 } from "./types";
 
 // axios.defaults.headers.common["Content-Type"] = "application/json";
@@ -131,10 +133,10 @@ export const fetchConversations = async id => {
     const data = await axios.get(`${url}/api/conversations/${conv_id}`, {
       headers: { Authorization: localStorage.getItem("mentorMeToken") }
     });
-    console.log(data.data);
+    // console.log(data.data);
     toReturn.push(data.data);
   });
-  console.log(toReturn);
+  // console.log(toReturn);
   return toReturn;
 };
 
@@ -154,6 +156,14 @@ export const fetchAnswers = id => async dispatch => {
   });
   console.log(res.data);
   dispatch({ type: FETCH_ANSWERS_SUCCESS, payload: res.data });
+};
+
+export const addAnswer = formVals => async dispatch => {
+  dispatch({ type: ADD_ANSWER_ATTEMPT });
+  const res = await axios.post(`${url}/api/answers`, formVals, {
+    headers: { Authorization: localStorage.getItem("mentorMeToken") }
+  });
+  dispatch({ type: ADD_ANSWER_SUCCESS, payload: res.data });
 };
 
 // {

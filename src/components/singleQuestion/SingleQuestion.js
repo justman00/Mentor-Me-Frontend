@@ -191,13 +191,17 @@ function SingleQuestion({
 
           <Link
             style={{ textDecoration: "none" }}
-            to={`/conversation/conversation_id`}
+            to={`/conversation/placeholder`}
           >
             <BtnPrimary width="87%">
               <i className="fas fa-user-plus" /> Respond
             </BtnPrimary>
           </Link>
-          <Answers questionId={question.post_id} />
+          <Answers
+            category={question.category}
+            userId={currentUser.id}
+            questionId={question.post_id}
+          />
         </QuestionDiv>
       </div>
     </div>
