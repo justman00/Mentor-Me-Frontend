@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { fetchProfile } from "../../actions";
+import { fetchProfile, unmountAction } from "../../actions";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { UNMOUNT_PROFILE } from "../../actions/types";
 //styles
 const StyledProfile = styled.div`
   display: flex;
-  width:100%
+  width: 100%;
   flex-direction: column;
   font-size: 2rem;
   background-color: white;
@@ -98,13 +99,21 @@ const Edit = styled.div`
   color: red;
   font-size: 0.5em;
 `;
-function Profile({ profile, match, fetchProfile, currentId }) {
+function Profile({ profile, match, fetchProfile, currentId, unmountAction }) {
   useEffect(() => {
     fetchProfile(match.params.id);
+
+    return () => {
+      unmountAction(UNMOUNT_PROFILE);
+    };
   }, [match.params.id]);
   function displayEdit() {
     if (match.params.id + "" === currentId + "") {
-      return <Edit><Link to={`/edit/profile/${currentId}`}>Edit Profile</Link></Edit>;
+      return (
+        <Edit>
+          <Link to={`/edit/profile/${currentId}`}>Edit Profile</Link>
+        </Edit>
+      );
     }
   }
   // loading
@@ -115,7 +124,7 @@ function Profile({ profile, match, fetchProfile, currentId }) {
       </Load>
     );
   }
-  
+
   return (
     <StyledProfile>
       <Head photo={profile.photo}>
@@ -134,7 +143,6 @@ function Profile({ profile, match, fetchProfile, currentId }) {
   );
 }
 const mapStateToProps = state => {
-  console.log(state);
   return {
     profile: state.currentUser.profileToShow,
     currentId: state.currentUser.id
@@ -142,5 +150,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { fetchProfile }
+  { fetchProfile, unmountAction }
 )(Profile);

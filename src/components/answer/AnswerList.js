@@ -1,9 +1,12 @@
 import React from "react";
+import AnswerItem from "./AnswerItem";
 
-function AnswerList() {
+function AnswerList(props) {
   return (
     <div>
-      <h1>List of answers</h1>
+      {props.answers.map(answer => (
+        <AnswerItem key={answer.post_id} answer={answer} />
+      ))}
     </div>
   );
 }

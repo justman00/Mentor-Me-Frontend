@@ -14,7 +14,9 @@ import {
   FETCH_QUESTION_ATTEMPT,
   FETCH_QUESTION_SUCCESS,
   FETCH_CONVERSATION_ATTEMPT,
-  FETCH_CONVERSATION_SUCCESS
+  FETCH_CONVERSATION_SUCCESS,
+  FETCH_ANSWERS_ATTEMPT,
+  FETCH_ANSWERS_SUCCESS
 } from "./types";
 
 // axios.defaults.headers.common["Content-Type"] = "application/json";
@@ -144,6 +146,15 @@ export const fetchConversationHelper = async id => {
 };
 
 export const unmountAction = type => ({ type });
+
+export const fetchAnswers = id => async dispatch => {
+  dispatch({ type: FETCH_ANSWERS_ATTEMPT });
+  const res = await axios.get(`${url}/api/answers/${id}`, {
+    headers: { Authorization: localStorage.getItem("mentorMeToken") }
+  });
+  console.log(res.data);
+  dispatch({ type: FETCH_ANSWERS_SUCCESS, payload: res.data });
+};
 
 // {
 //   ...currentUser,

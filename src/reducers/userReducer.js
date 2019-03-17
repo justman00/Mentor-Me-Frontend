@@ -5,7 +5,8 @@ import {
   LOGOUT,
   FETCH_PROFILE_SUCCESS,
   FETCH_PROFILE_ATTEMPT,
-  FETCH_CONVERSATION_SUCCESS
+  FETCH_CONVERSATION_SUCCESS,
+  UNMOUNT_PROFILE
 } from "../actions/types";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
   id: null,
   about: "",
   role: "",
-  isLoggedIn: false,
+  isLoggedIn: true,
   loadingAuth: null,
   profileToShow: null,
   currentConversation: null
@@ -40,37 +41,39 @@ export default (state = initialState, action) => {
         loadingAuth: false
       };
       return newUser;
-    case FETCH_PROFILE_ATTEMPT: 
-      return { ...state, profileToShow: false}
+    case FETCH_PROFILE_ATTEMPT:
+      return { ...state, profileToShow: null };
     case FETCH_PROFILE_SUCCESS:
       return { ...state, profileToShow: action.payload };
     case FETCH_CONVERSATION_SUCCESS:
       return { ...state, currentConversation: action.payload };
-    case ADD_MESSAGE:
-      const newMessages = state.messages.map(msg => {
-        if (msg.withWho.name === action.payload.withWho) {
-          return {
-            ...msg,
-            listOfMessages: [
-              ...msg.listOfMessages,
-              {
-                date: "23456789",
-                text: action.payload.text,
-                user: {
-                  name: state.fullName,
-                  id: state.id
-                },
-                id: "9"
-              }
-            ]
-          };
-        }
-        return msg;
-      });
-      return {
-        ...state,
-        messages: newMessages
-      };
+    case UNMOUNT_PROFILE:
+      return { ...state, profileToShow: null };
+    // case ADD_MESSAGE:
+    //   const newMessages = state.messages.map(msg => {
+    //     if (msg.withWho.name === action.payload.withWho) {
+    //       return {
+    //         ...msg,
+    //         listOfMessages: [
+    //           ...msg.listOfMessages,
+    //           {
+    //             date: "23456789",
+    //             text: action.payload.text,
+    //             user: {
+    //               name: state.fullName,
+    //               id: state.id
+    //             },
+    //             id: "9"
+    //           }
+    //         ]
+    //       };
+    //     }
+    //     return msg;
+    //   });
+    //   return {
+    //     ...state,
+    //     messages: newMessages
+    //   };
     default:
       return state;
   }

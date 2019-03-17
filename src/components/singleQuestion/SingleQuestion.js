@@ -61,7 +61,7 @@ const Edit = styled.div`
 const QuestionDiv = styled.div`
   margin-top: 20%;
   background: #fafafa;
-  height: 67vh;
+  /* height: 67vh; */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -197,7 +197,7 @@ function SingleQuestion({
               <i className="fas fa-user-plus" /> Respond
             </BtnPrimary>
           </Link>
-          <Answers />
+          <Answers questionId={question.post_id} />
         </QuestionDiv>
       </div>
     </div>

@@ -6,14 +6,17 @@ import {
   DELETE_QUESTION_SUCCESS,
   FETCH_QUESTION_ATTEMPT,
   FETCH_QUESTION_SUCCESS,
-  UNMOUNT_QUESTION
+  UNMOUNT_QUESTION,
+  FETCH_ANSWERS_SUCCESS,
+  FETCH_ANSWERS_ATTEMPT
 } from "../actions/types";
 
 const initialStore = {
   questions: [],
   fetchingQs: false,
   addingQ: false,
-  singleQuestion: null
+  singleQuestion: null,
+  answers: []
 };
 
 export default (state = initialStore, action) => {
@@ -34,6 +37,10 @@ export default (state = initialStore, action) => {
       return { ...state, fetchingQs: false, singleQuestion: action.payload };
     case UNMOUNT_QUESTION:
       return { ...state, singleQuestion: null };
+    case FETCH_ANSWERS_ATTEMPT:
+      return { ...state, answers: [] };
+    case FETCH_ANSWERS_SUCCESS:
+      return { ...state, answers: action.payload };
     default:
       return state;
   }
