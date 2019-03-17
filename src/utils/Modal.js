@@ -6,11 +6,12 @@ const ModalStyled = styled.div`
   height: 100vh;
   width: 100vw;
   background: black;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
+  z-index: 504;
 `;
 
 const ModalDiv = styled.div`
@@ -22,7 +23,9 @@ const ModalDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 54;
+  z-index: 133;
+  opacity: 1;
+  /* position: absolute; */
 
   h3 {
     font-size: 2rem;
@@ -60,10 +63,7 @@ const Modal = props => {
   return ReactDOM.createPortal(
     <ModalStyled onClick={props.onDismiss}>
       <ModalDiv>
-        <h3>
-          Are you sure you want to delete the question with the title:{" "}
-          <strong>{props.title}</strong>
-        </h3>
+        <h3>Are you sure you want to delete this question</h3>
         <ButtonsSpace>
           <button onClick={props.onDelete}>Delete</button>
           <button onClick={props.onDismiss}>Cancel</button>

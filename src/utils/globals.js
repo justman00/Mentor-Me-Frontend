@@ -55,7 +55,9 @@ html, body {
 }
 
 #modal {
-	position: absolute;
+	position: fixed;
 	top: 0;
+	/* z-index: 2; */
+	left: 0;
 }
 `;

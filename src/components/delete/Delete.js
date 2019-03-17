@@ -17,7 +17,7 @@ function Delete(props) {
 
   return (
     <div>
-      <Modal title={"test"} onDelete={onDelete} onDismiss={onDismiss} />
+      <Modal onDelete={onDelete} onDismiss={onDismiss} />
     </div>
   );
 }

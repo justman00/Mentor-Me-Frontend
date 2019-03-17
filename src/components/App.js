@@ -71,15 +71,16 @@ function App(props) {
         <Route
           path="/delete/:id"
           render={props => {
-            return conditionalRendering(SingleQuestion, props);
+            return conditionalRendering(Delete, props);
           }}
         />
         <Route
           path="/delete/:id"
           render={props => {
-            return conditionalRendering(Delete, props);
+            return conditionalRendering(SingleQuestion, props);
           }}
         />
+
         <Route
           exact
           path="/edit/:id"

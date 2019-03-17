@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { updateQuestion } from "../../actions";
+import { updateQuestion, fetchQuestion, unmountAction } from "../../actions";
 import EditForm from "./EditForm";
 import Loader from "react-loader-spinner";
 import styled from "styled-components";
+import { UNMOUNT_QUESTION } from "../../actions/types";
 
 //loader style
 const Load = styled.div`
@@ -13,15 +14,20 @@ const Load = styled.div`
 
 function EditQuestion(props) {
   console.log(props);
+  useEffect(() => {
+    props.fetchQuestion(props.match.params.id);
 
+    return () => {
+      props.unmountAction(UNMOUNT_QUESTION);
+    };
+  }, []);
 
   if (!props.singleQuestion) {
-    return (<Load><Loader 
-    type="TailSpin"
-    color="#5887F9"
-    height="100"	
-    width="100"
-    /></Load>);
+    return (
+      <Load>
+        <Loader type="TailSpin" color="#5887F9" height="100" width="100" />
+      </Load>
+    );
   }
 
   return (
@@ -39,5 +45,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { updateQuestion }
+  { updateQuestion, fetchQuestion, unmountAction }
 )(EditQuestion);
