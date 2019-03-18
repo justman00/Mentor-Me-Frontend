@@ -67,7 +67,7 @@ export const LoginStyled = styled.div`
   }
 
   a {
-    margin-bottom: 35%;
+    margin-bottom: 55%;
     font-size: 1.8rem;
     font-weight: 500;
     color: #fff;
