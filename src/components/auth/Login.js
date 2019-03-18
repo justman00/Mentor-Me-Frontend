@@ -4,7 +4,6 @@ import * as yup from "yup";
 import { login } from "../../actions";
 import { Redirect, Link } from "react-router-dom";
 import styled from "styled-components";
-import { device } from "../main/device";
 
 import { connect } from "react-redux";
 
@@ -25,19 +24,12 @@ export const LoginStyled = styled.div`
     font-size: 4rem;
     font-weight: 550;
     color: #fff;
-    @media ${device.desktop} {
-      margin-top: 5%;
-    }
   }
 
   form {
     width: 90%;
     margin: 0 auto;
     margin-bottom: 30%;
-    @media ${device.desktop} {
-      max-width: 900px;
-      margin-top: -6%;
-    }
 
     input {
       padding: 15px;
@@ -75,7 +67,7 @@ export const LoginStyled = styled.div`
   }
 
   a {
-    margin-bottom: 15%;
+    margin-bottom: 35%;
     font-size: 1.8rem;
     font-weight: 500;
     color: #fff;

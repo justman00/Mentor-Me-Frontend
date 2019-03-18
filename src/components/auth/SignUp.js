@@ -8,12 +8,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const SignUp = ({ errors, touched, isLoggedIn }) => {
-  console.log("mounted");
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
-
-  console.log(errors);
 
   return (
     <LoginStyled register>

@@ -8,7 +8,7 @@ const FormStyled = styled.form`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 5%;
+  margin-bottom: 15%;
 
   input {
     padding: 10px;
